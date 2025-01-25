@@ -1,0 +1,40 @@
+﻿@page "/users"
+@inject BlazorFrontend.Client.Services.ApiService ApiService
+
+<h3>User Master Maintenance</h3>
+
+@if (users == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>User ID</th>
+                <th>Username</th>
+                <th>Company ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var user in users)
+            {
+                <tr>
+                    <td>@user.UserId</td>
+                    <td>@user.Username</td>
+                    <td>@user.CompanyId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<User> users;
+
+    protected override async Task OnInitializedAsync()
+    {
+        users = await ApiService.GetUsersAsync();
+    }
+}

@@ -1,0 +1,39 @@
+﻿@inherits LayoutComponentBase
+@inject NavigationManager Navigation
+@inject IJSRuntime JSRuntime
+@using MudBlazor
+@using Microsoft.JSInterop
+
+<MudDrawer @bind-Open="_drawerOpen" Variant="DrawerVariant.Persistent" Elevation="1">
+    <MudNavMenu>
+        @if (IsAuthenticated())
+        {
+            <MudNavLink Href="/menu" Icon="@Icons.Material.Filled.Menu">
+                Menu
+            </MudNavLink>
+            <MudNavLink Href="/logout" Icon="@Icons.Material.Filled.Logout">
+                Logout
+            </MudNavLink>
+        }
+        else
+        {
+            <MudNavLink Href="/login" Icon="@Icons.Material.Filled.Login">
+                Login
+            </MudNavLink>
+        }
+    </MudNavMenu>
+</MudDrawer>
+
+<MudMainContent>
+    @Body
+</MudMainContent>
+
+@code {
+    private bool _drawerOpen = true;
+
+    private bool IsAuthenticated()
+    {
+        var token = JSRuntime.InvokeAsync<string>("sessionStorage.getItem", "authToken").Result;
+        return !string.IsNullOrEmpty(token);
+    }
+}

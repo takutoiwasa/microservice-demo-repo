@@ -1,0 +1,40 @@
+﻿@page "/items"
+@inject BlazorFrontend.Client.Services.ApiService ApiService
+
+<h3>Item Master Maintenance</h3>
+
+@if (items == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Item ID</th>
+                <th>Item Name</th>
+                <th>Company ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in items)
+            {
+                <tr>
+                    <td>@item.ItemId</td>
+                    <td>@item.ItemName</td>
+                    <td>@item.CompanyId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<Item> items;
+
+    protected override async Task OnInitializedAsync()
+    {
+        items = await ApiService.GetItemsAsync();
+    }
+}

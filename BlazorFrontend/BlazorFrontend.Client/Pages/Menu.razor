@@ -1,0 +1,39 @@
+﻿@page "/menu"
+@inject NavigationManager Navigation
+@inject JSRuntime JSRuntime
+@using MudBlazor
+@using Microsoft.JSInterop
+
+<MudPaper Class="pa-4" Elevation="4">
+    <MudText Typo="Typo.h5">Menu</MudText>
+    <MudStack Spacing="2" Direction="Column">
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="NavigateToCompanies">Company Master Maintenance</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="NavigateToUsers">User Master Maintenance</MudButton>
+        <MudButton Variant="Variant.Filled" Color="Color.Primary" OnClick="NavigateToItems">Item Master Maintenance</MudButton>
+        <MudButton Variant="Variant.Text" Color="Color.Error" OnClick="Logout">Logout</MudButton>
+    </MudStack>
+</MudPaper>
+
+@code {
+    private void NavigateToCompanies()
+    {
+        Navigation.NavigateTo("/companies");
+    }
+
+    private void NavigateToUsers()
+    {
+        Navigation.NavigateTo("/users");
+    }
+
+    private void NavigateToItems()
+    {
+        Navigation.NavigateTo("/items");
+    }
+
+    private async Task Logout()
+    {
+        // セッションストレージからトークンを削除
+        await JSRuntime.InvokeVoidAsync("sessionStorage.removeItem", "authToken");
+        Navigation.NavigateTo("/login");
+    }
+}

@@ -1,0 +1,38 @@
+﻿@page "/companies"
+@inject BlazorFrontend.Client.Services.ApiService ApiService
+
+<h3>Company Master Maintenance</h3>
+
+@if (companies == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Company ID</th>
+                <th>Company Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var company in companies)
+            {
+                <tr>
+                    <td>@company.CompanyId</td>
+                    <td>@company.CompanyName</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private IEnumerable<Company> companies;
+
+    protected override async Task OnInitializedAsync()
+    {
+        companies = await ApiService.GetCompaniesAsync();
+    }
+}
