@@ -4,7 +4,7 @@
 substitutions:
   _SERVICE_NAME: ''               # マイクロサービス名（例: service-a）
   _SERVICE_DIR: ''                # マイクロサービスのディレクトリパス（例: services/service-a）
-  _ARTIFACT_REGISTRY: 'artifact-registry-repo'  # Artifact Registryのリポジトリ名
+  _ARTIFACT_REGISTRY: ''  # Artifact Registryのリポジトリ名
   _SERVICE_ACCOUNT_NAME: ''       # サービスアカウント名（例: service-a-account@your-project.iam.gserviceaccount.com）
 
 steps:
