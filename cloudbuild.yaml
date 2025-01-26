@@ -15,7 +15,7 @@ steps:
       [
         "build",
         "-t",
-        "us-central1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
+        "asia-northeast1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
         ".",
       ]
 
@@ -24,7 +24,7 @@ steps:
     args:
       [
         "push",
-        "us-central1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
+        "asia-northeast1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
       ]
 
   # Cloud Runにデプロイ
@@ -36,7 +36,7 @@ steps:
         "deploy",
         "${_SERVICE_NAME}",
         "--image",
-        "us-central1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
+        "asia-northeast1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
         "--platform",
         "managed",
         "--allow-unauthenticated",
