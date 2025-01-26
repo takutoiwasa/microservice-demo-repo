@@ -47,7 +47,7 @@ steps:
         "--project",
         "microservice-448705",
         "--quiet",
-        "PORT=5000"
+        "PORT=8080"
       ]
 
 # サービスアカウントの指定
