@@ -15,7 +15,7 @@ steps:
       [
         "build",
         "-t",
-        "asia-northeast1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
+        "asia-northeast1-docker.pkg.dev/microservice-448705/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:latest",
         ".",
       ]
 
@@ -24,7 +24,7 @@ steps:
     args:
       [
         "push",
-        "asia-northeast1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
+        "asia-northeast1-docker.pkg.dev/microservice-448705/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:latest",
       ]
 
   # Cloud Runにデプロイ
@@ -36,7 +36,7 @@ steps:
         "deploy",
         "${_SERVICE_NAME}",
         "--image",
-        "asia-northeast1-docker.pkg.dev/$PROJECT_ID/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:$COMMIT_SHA",
+        "asia-northeast1-docker.pkg.dev/microservice-448705/${_ARTIFACT_REGISTRY}/${_SERVICE_NAME}:latest",
         "--platform",
         "managed",
         "--allow-unauthenticated",
@@ -45,12 +45,12 @@ steps:
         "--region",
         "asia-northeast1",
         "--project",
-        "$PROJECT_ID",
+        "microservice-448705",
         "--quiet"
       ]
 
 # サービスアカウントの指定
-serviceAccount: "projects/$PROJECT_ID/serviceAccounts/${_SERVICE_ACCOUNT_NAME}"
+serviceAccount: "projects/microservice-448705/serviceAccounts/${_SERVICE_ACCOUNT_NAME}"
 
 # ビルドオプションの設定
 options:
