@@ -46,7 +46,8 @@ steps:
         "asia-northeast1",
         "--project",
         "microservice-448705",
-        "--quiet"
+        "--quiet",
+        "PORT=8080"
       ]
 
 # サービスアカウントの指定
